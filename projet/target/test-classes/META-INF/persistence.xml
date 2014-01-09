@@ -10,7 +10,10 @@
     <provider> 
     org.eclipse.persistence.jpa.PersistenceProvider
     </provider>
-    <class> org.rest.service.entities.Album </class> 
+    <class> net.ald.projet.entities.Artiste</class> 
+    <class> net.ald.projet.entities.Oeuvre</class> 
+    <class> net.ald.projet.entities.Peinture</class> 
+    <class> net.ald.projet.entities.Photo</class>
     <non-jta-data-source>java:comp/env/jdbc/H2DB</non-jta-data-source> 
     <properties>
       <property
