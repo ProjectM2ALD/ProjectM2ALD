@@ -42,17 +42,17 @@ public class JpaFilter implements Filter {
                 }
         }
 
+        public void init(FilterConfig arg0) throws ServletException {
+            destroy();
+            emf = Persistence.createEntityManagerFactory("Musee");
 
+    }
         public void destroy() {
                 if (emf != null)
                         emf.close();        
         }
 
 
-        public void init(FilterConfig arg0) throws ServletException {
-                destroy();
-                emf = Persistence.createEntityManagerFactory("Musee");
-
-        }
+       
 
 }

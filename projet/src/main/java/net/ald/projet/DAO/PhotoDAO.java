@@ -33,7 +33,7 @@ public class PhotoDAO extends GenericDAO {
                 }
         }
 
-        public void updatePhoto(Photo photo){
+       /* public void updatePhoto(Photo photo){
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
                 try {
@@ -46,7 +46,7 @@ public class PhotoDAO extends GenericDAO {
                                 LOG.error("update Photo failed", re);
                         tx.rollback();
                 }
-        }
+        }*/
 
         public void removePhoto(Photo photo){
                 EntityManager em = createEntityManager();

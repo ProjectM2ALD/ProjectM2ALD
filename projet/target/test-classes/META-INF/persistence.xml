@@ -18,12 +18,18 @@
     <properties>
       <property
 	  name="eclipselink.target-database"
-	  value="org.eclipse.persistence.platform.database.H2Platform"/> 
+	  value="org.eclipse.persistence.platform.database.H2Platform"/> 
       <property
 	  name="eclipselink.ddl-generation"
 	  value="create-tables"/> 
       <property
-	  name="eclipselink.logging.level" value="FINE"/> 
+	  name="eclipselink.logging.level" value="FINE"/> 
+	  <property name="javax.persistence.jdbc.url"
+	             value="jdbc:h2:mem://localhost:9101/dbunit;create=true"/>
+	  <property name="javax.persistence.jdbc.user"
+	            value="sa"/>
+	  <property name="javax.persistence.jdbc.password"
+	            value=""/>
     </properties>
   </persistence-unit>
 </persistence>

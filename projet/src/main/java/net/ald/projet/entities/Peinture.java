@@ -4,12 +4,10 @@ package net.ald.projet.entities;
 
 import java.util.List;
 
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 import net.ald.projet.property.Dimension;
 import net.ald.projet.property.Realisation;
@@ -33,20 +31,24 @@ public class Peinture extends Oeuvre{
         }
         
   
-        public Peinture(Dimension dimension, boolean hasBeenReproduced,
+        public Peinture(Dimension dimension,
                         Artiste artiste, List<Photo> photo, Integer annee, String caracteristique,
                         String titre, String resume, List<String> commentaire, String tag, SupportOeuvre support, Realisation realisation) {
-                super(dimension, hasBeenReproduced, artiste, photo, annee, caracteristique, titre,
-                                resume, commentaire, tag);
+                super(artiste, titre, annee, dimension, photo, caracteristique, commentaire, tag);
                 this.support = support;
                 this.realisation = realisation;
         }
 
-    public Peinture(int id, String titre, boolean hasBeenReproduced) {
-	super(id, titre, "Peinture", hasBeenReproduced);
+    public Peinture(int id, Artiste artiste, String titre, Integer annee) {
+	super(id, artiste, titre, annee, "Peinture");
     }
 
-    public SupportOeuvre getSupport() {
+    public Peinture(int id, String titre) {
+		super(id, titre);
+	}
+
+
+	public SupportOeuvre getSupport() {
 	return support;
     }
 

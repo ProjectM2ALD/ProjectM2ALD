@@ -5,25 +5,26 @@ package net.ald.projet.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
+@Table(name="Artiste")
 @XmlRootElement(name = "artiste")
 public class Artiste {
         
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         private int id;
-        private String nom;
-        private String prenom;
+        private String first_name;
+        private String last_name;
         
         @OneToMany(mappedBy="artiste", orphanRemoval=true)
         private Set<Oeuvre> oeuvres = new HashSet<Oeuvre>();
@@ -31,11 +32,18 @@ public class Artiste {
         public Artiste(){
                 
         }
-
-
-        public Artiste(String prenom, String nom) {
-                this.nom = nom;
-                this.prenom = prenom;
+        
+        public Artiste(int id, String first_name, String last_name, Set<Oeuvre> oeuvre) {
+        	this.id = id;
+        	this.first_name = first_name;
+        	this.last_name= last_name;
+            this.oeuvres = oeuvre;
+        }
+        
+        public Artiste(int id, String first_name, String last_name) {
+        	this.id = id;
+        	this.first_name = first_name;
+            this.last_name= last_name;
         }
 
         @XmlElement
@@ -48,22 +56,21 @@ public class Artiste {
         }
 
         @XmlElement
-        public String getNom() {
-                return nom;
-        }
-
-        public void setNom(String nom) {
-                this.nom = nom;
-        }
-
+		public String getFirst_name() {
+			return first_name;
+		}
+       
+		public void setFirst_name(String first_name) {
+			this.first_name = first_name;
+		}
         @XmlElement
-        public String getPrenom() {
-                return prenom;
-        }
-
-        public void setPrenom(String prenom) {
-                this.prenom = prenom;
-        }
+		public String getLast_name() {
+			return last_name;
+		}
+       
+		public void setLast_name(String last_name) {
+			this.last_name = last_name;
+		}
 
         @XmlTransient
         public Set<Oeuvre> getOeuvres() {
@@ -74,13 +81,14 @@ public class Artiste {
                 this.oeuvres = oeuvres;
         }
         
-        public void addOeuvre(Oeuvre o){
-                this.oeuvres.add(o);
+        public void addOeuvre(Oeuvre oeuv){
+                this.oeuvres.add(oeuv);
         }
         
-        public void removeOeuvre(Oeuvre o){
-                this.oeuvres.remove(o);
+        public void removeOeuvre(Oeuvre oeuv){
+                this.oeuvres.remove(oeuv);
         }
+        
                 
 }
 

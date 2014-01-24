@@ -18,13 +18,13 @@ public class CollectionDAO extends GenericDAO {
 
         private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(CollectionDAO.class);
         
-        public void createCollection(Collection artiste) {
+        public void createCollection(Collection collection) {
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
                 try {
                         tx = em.getTransaction();
                         tx.begin();
-                        em.persist(artiste);
+                        em.persist(collection);
                         tx.commit();
                 } catch (Exception re) {
                         if (tx != null)
@@ -34,7 +34,7 @@ public class CollectionDAO extends GenericDAO {
         }
 
 
-        public void updateCollection(Collection collection){
+        /*public void updateCollection(Collection collection){
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
                 try {
@@ -47,7 +47,7 @@ public class CollectionDAO extends GenericDAO {
                                 LOG.error("update collection failed", re);
                         tx.rollback();
                 }
-        }
+        }*/
 
         @SuppressWarnings("unchecked")
 		public List<Collection> findAll() {
@@ -57,7 +57,7 @@ public class CollectionDAO extends GenericDAO {
 
                 res = em.createQuery("SELECT p FROM Collection p").getResultList();
                 for(Collection c : res){
-                        collections.add(new Collection(c.getId(), c.getLibele(), c.getEtat()));
+                        collections.add(new Collection(c.getId(), c.getEtat()));
                 }
                 
                 return collections;
