@@ -16,11 +16,13 @@ import javax.ws.rs.core.Response;
 
 import org.slf4j.LoggerFactory;
 
+import net.ald.projet.DAO.ConnexionDAOImpl;
 import net.ald.projet.DAO.ArtisteDAOImpl;
 import net.ald.projet.DAO.CollectionDAO;
 import net.ald.projet.DAO.OeuvreDAOImpl;
 import net.ald.projet.DAO.PhotoDAO;
 import net.ald.projet.DAO.ReproductionDAO;
+import net.ald.projet.property.Connexion;
 
 
 
@@ -33,9 +35,31 @@ public class ServiceMusee{
     private static ArtisteDAOImpl artisteDAO = new ArtisteDAOImpl();
     private static ReproductionDAO reproductionDAO = new ReproductionDAO();
     private static PhotoDAO photoDAO = new PhotoDAO();
+    private static ConnexionDAOImpl connexionDAOImpl = new ConnexionDAOImpl();
 
     public ServiceMusee(){
     }
+    
+    @POST
+    @Path("/connexion")
+    @Consumes("application/xml")
+    @Produces("application/xml")
+    public Response connection(Connexion connexion){
+    LOG.info("login "+connexion.getLogin()+ " mdp "+connexion.getPassword());
+    String status = connexionDAOImpl.isValidConnection(connexion);
+    /**
+     * erreur 400 : Could not find message body reader for type: class com.ald.projet.property.Connexion of content type: application/x-www-form-urlencoded. 
+     * Dès que je décommente "Connexion connexion" pour l'interpréter depuis la requête HTTP reçue ça plante. 
+     * Le contenu renvoyé par le client n'est pas au format XML mais une sorte de contenu de formulaire
+     * En attendant, je retourne toujours le status "Conservateur" pour pouvoir avancer. 
+     */
+    String test = "Conservateur";
+    return Response.ok(status).build();
+
+
+}
+
+
     
     @POST
     @Path("/collection/create")
