@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
-@Table(name="Artiste")
+//@Table(name="Artiste")
 @XmlRootElement(name = "artiste")
 public class Artiste {
         
@@ -87,8 +87,7 @@ public class Artiste {
         
         public void removeOeuvre(Oeuvre oeuv){
                 this.oeuvres.remove(oeuv);
-        }
-        
+        }       
                 
 }
 
