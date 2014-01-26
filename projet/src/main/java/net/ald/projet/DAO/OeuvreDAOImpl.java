@@ -14,37 +14,21 @@ import javax.persistence.criteria.Root;
 
 import org.slf4j.LoggerFactory;
 
+import net.ald.projet.entities.Artiste;
 import net.ald.projet.entities.Collection;
 import net.ald.projet.entities.Oeuvre;
 //import net.ald.projet.simplified.OeuvreSimplifiee;
 import net.ald.projet.entities.Peinture;
+import net.ald.projet.entities.Photo;
 import net.ald.projet.entities.Photographie;
 import net.ald.projet.entities.Sculpture;
+import net.ald.projet.property.Dimension;
 
 
-public class OeuvreDAO extends GenericDAO {
+public class OeuvreDAOImpl extends GenericDAO {
 
-        private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(OeuvreDAO.class);
-
-
-        public void testT(Oeuvre o) {
-                EntityManager em = createEntityManager();
-                EntityTransaction tx = null;
-                try {
-                        tx = em.getTransaction();
-                        tx.begin();
-                        Oeuvre oeuvre =  em.find(Oeuvre.class,o.getId());
-                        LOG.info("info : "+ oeuvre.getArtiste().getNom());
-                        LOG.info("info : "+ oeuvre.getArtiste().getPrenom());
-                        tx.commit();
-
-                } catch (Exception re) {
-                        if (tx != null)
-                                LOG.error("test artiste failed", re);
-                        tx.rollback();
-                }
-        }
-
+        private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(OeuvreDAOImpl.class);
+        
         public void createOeuvre(Oeuvre oeuvre) {
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
@@ -53,18 +37,51 @@ public class OeuvreDAO extends GenericDAO {
                         tx.begin();
                         em.persist(oeuvre);
                         tx.commit();
-
-
-                } catch (Exception re) {
+                } catch (Exception e) {
                         if (tx != null){
-                                LOG.error("create oeuvre failed", re);
+                        	System.err.println("Something went wrong");
                         }
                         tx.rollback();
                 }
+        }
+        
+        public void createOeuvre(List<Oeuvre> oeuv) {
+            EntityManager em = createEntityManager();
+            EntityTransaction tx = null;
+            try {
+                    tx = em.getTransaction();
+                    tx.begin();
+                    for (Oeuvre u : oeuv) {
+                            em.persist(u);
+                    }
+                    tx.commit();
 
+            } catch (Exception e) {
+                    if (tx != null)
+                            System.err.println("Something went wrong");
+                    tx.rollback();
+            }
+    }
+        
+        void createOeuvre(int id, Artiste artiste, String titre, Integer annee, String type) {
+        	
+        	System.out.println("Create a Oeuvre");
+        	EntityManager em = createEntityManager();
+            EntityTransaction tx = null;
+            try {
+                    tx = em.getTransaction();
+                    tx.begin();
+                    Oeuvre oeuvre = new Oeuvre(id, artiste, titre, annee, type);
+                    em.persist(oeuvre);
+                    tx.commit();
+            } catch (Exception e) {
+                    if (tx != null)
+                            System.err.println("Something went wrong");
+                    tx.rollback();
+            }
         }
 
-        public void updateOeuvre(Oeuvre oeuvre){
+       /* public void updateOeuvre(Oeuvre oeuvre){
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
                 try {
@@ -78,7 +95,7 @@ public class OeuvreDAO extends GenericDAO {
                                 LOG.error("update oeuvre failed", re);
                         tx.rollback();
                 }
-        }
+        }*/
 
         public void removeOeuvre(Oeuvre oeuvre){
                 EntityManager em = createEntityManager();
@@ -101,6 +118,24 @@ public class OeuvreDAO extends GenericDAO {
                 }
         }
 
+        public void artistofOeuvre(Oeuvre oeuv) {
+            EntityManager em = createEntityManager();
+            EntityTransaction tx = null;
+            try {
+                    tx = em.getTransaction();
+                    tx.begin();
+                    Oeuvre oeuvre =  em.find(Oeuvre.class,oeuv.getId());
+                    LOG.info("info : "+ oeuvre.getArtiste().getLast_name());
+                    LOG.info("info : "+ oeuvre.getArtiste().getFirst_name());
+                    tx.commit();
+
+            } catch (Exception e) {
+                    if (tx != null)
+                            LOG.error("test artiste failed", e);
+                    tx.rollback();
+            }
+    }
+        
         @SuppressWarnings("unchecked")
 		public List<Oeuvre> findAll() {
                 List<Oeuvre> oeuvres = new ArrayList<Oeuvre>();
@@ -111,11 +146,11 @@ public class OeuvreDAO extends GenericDAO {
 
                 for(Oeuvre o : res){
                         if(o.getClass().getName().contains("Sculpture")){
-                                oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Peinture")){
-                                oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Peinture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Photographie")){
-                                oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Photographie(o.getId(), o.getTitre()));
                         }
                 }
                 return oeuvres;
@@ -144,10 +179,10 @@ public class OeuvreDAO extends GenericDAO {
                         predicateList.add(annee);
                 }
 
-                if(o.hasBeenReproduced() == true){
+                /*if(o.hasBeenReproduced() == true){
                         Predicate reproduced = cb.equal(root.get("hasBeenReproduced"), o.hasBeenReproduced());
                         predicateList.add(reproduced);
-                }
+                }*/
 
                 if(o.getArtiste() != null){
                         Predicate artiste = cb.equal(root.get("artiste"), o.getArtiste());
@@ -200,11 +235,11 @@ public class OeuvreDAO extends GenericDAO {
                 
                 for(Oeuvre o : res){
                         if(o.getClass().getName().contains("Sculpture")){
-                                oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Peinture")){
-                                oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Peinture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Photographie")){
-                                oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Photographie(o.getId(), o.getTitre()));
                         }
                 }
                 return oeuvres;
@@ -224,11 +259,11 @@ public class OeuvreDAO extends GenericDAO {
                 
                 for(Oeuvre o : res){
                         if(o.getClass().getName().contains("Sculpture")){
-                                oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Peinture")){
-                                oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Peinture(o.getId(), o.getTitre()));
                         }else if(o.getClass().getName().contains("Photographie")){
-                                oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+                                oeuvres.add(new Photographie(o.getId(), o.getTitre()));
                         }
                 }
                 return oeuvres;                

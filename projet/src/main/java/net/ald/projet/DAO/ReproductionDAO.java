@@ -29,13 +29,7 @@ public class ReproductionDAO extends GenericDAO {
 	    tx = em.getTransaction();
 	    tx.begin();
 	    em.persist(reproduction);
-
-
 	    Oeuvre o = em.find(Oeuvre.class, reproduction.getOeuvre().getId());
-	    if(!o.hasBeenReproduced()){
-		o.setHasBeenReproduced(true);
-	    }
-
 	    tx.commit();
 
 	} catch (Exception re) {
@@ -46,7 +40,7 @@ public class ReproductionDAO extends GenericDAO {
 		}
     }
 
-    public void updateReproduction(Reproduction reproduction){
+    /*public void updateReproduction(Reproduction reproduction){
 	EntityManager em = createEntityManager();
 	EntityTransaction tx = null;
 	try {
@@ -60,7 +54,7 @@ public class ReproductionDAO extends GenericDAO {
 		LOG.error("update Reproduction failed", re);
 	    tx.rollback();
 	}
-    }
+    }*/
 
 
     public void removeReproduction(Reproduction reproduction){
@@ -171,11 +165,11 @@ public class ReproductionDAO extends GenericDAO {
                 
 	for(Oeuvre o : res){
 	    if(o.getClass().getName().contains("Sculpture")){
-		oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Peinture")){
-		oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Peinture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Photographie")){
-		oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Photographie(o.getId(), o.getTitre()));
 	    }
 	}
 	return oeuvres;
@@ -201,11 +195,11 @@ public class ReproductionDAO extends GenericDAO {
                 
 	for(Oeuvre o : res){
 	    if(o.getClass().getName().contains("Sculpture")){
-		oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Peinture")){
-		oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Peinture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Photographie")){
-		oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Photographie(o.getId(), o.getTitre()));
 	    }
 	}
 	return oeuvres;
@@ -235,11 +229,11 @@ public class ReproductionDAO extends GenericDAO {
                 
 	for(Oeuvre o : res){
 	    if(o.getClass().getName().contains("Sculpture")){
-		oeuvres.add(new Sculpture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Sculpture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Peinture")){
-		oeuvres.add(new Peinture(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Peinture(o.getId(), o.getTitre()));
 	    }else if(o.getClass().getName().contains("Photographie")){
-		oeuvres.add(new Photographie(o.getId(), o.getTitre(), o.hasBeenReproduced()));
+		oeuvres.add(new Photographie(o.getId(), o.getTitre()));
 	    }
 	}
 	return oeuvres;

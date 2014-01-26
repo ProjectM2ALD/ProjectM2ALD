@@ -16,11 +16,13 @@ import javax.ws.rs.core.Response;
 
 import org.slf4j.LoggerFactory;
 
-import net.ald.projet.DAO.ArtisteDAO;
+import net.ald.projet.DAO.ConnexionDAOImpl;
+import net.ald.projet.DAO.ArtisteDAOImpl;
 import net.ald.projet.DAO.CollectionDAO;
-import net.ald.projet.DAO.OeuvreDAO;
+import net.ald.projet.DAO.OeuvreDAOImpl;
 import net.ald.projet.DAO.PhotoDAO;
 import net.ald.projet.DAO.ReproductionDAO;
+import net.ald.projet.property.Connexion;
 
 
 
@@ -29,14 +31,15 @@ public class ServiceMusee{
     @SuppressWarnings("unused")
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ServiceMusee.class);        
     private static CollectionDAO collectionDAO = new CollectionDAO();
-    private static OeuvreDAO oeuvreDAO = new OeuvreDAO();
-    private static ArtisteDAO artisteDAO = new ArtisteDAO();
+    private static OeuvreDAOImpl oeuvreDAO = new OeuvreDAOImpl();
+    private static ArtisteDAOImpl artisteDAO = new ArtisteDAOImpl();
     private static ReproductionDAO reproductionDAO = new ReproductionDAO();
     private static PhotoDAO photoDAO = new PhotoDAO();
+    private static ConnexionDAOImpl connexionDAOImpl = new ConnexionDAOImpl();
 
     public ServiceMusee(){
     }
-    
+      
     @POST
     @Path("/collection/create")
     @Consumes("application/xml")
@@ -83,7 +86,7 @@ public class ServiceMusee{
     @Path("/oeuvre/update")
     @Consumes("application/xml")
     public Response updateOeuvre(Oeuvre o){
-	oeuvreDAO.updateOeuvre(o);
+	//oeuvreDAO.updateOeuvre(o);
 	return Response.ok(o).build();
     }
 
@@ -91,7 +94,7 @@ public class ServiceMusee{
     @Path("/collection/update")
     @Consumes("application/xml")
     public Response updateCollection(Collection collection){
-	collectionDAO.updateCollection(collection);
+	//collectionDAO.updateCollection(collection);
 	return Response.ok(collection).build();
     }
      
@@ -172,7 +175,7 @@ public class ServiceMusee{
     public Set<Oeuvre> findOeuvresOfArtiste(@PathParam("id")int ArtisteId)
     {
 	Set<Oeuvre> oeuvres = new HashSet<Oeuvre>();
-	oeuvres = artisteDAO.findOeuvresOfArtiste(ArtisteId);
+	oeuvres = artisteDAO.findOeuvresOfIdArtiste(ArtisteId);
 	return oeuvres;        
     }
 
@@ -221,7 +224,7 @@ public class ServiceMusee{
     public double setReproductionPrice(int id, double price) {
 	Reproduction reproduction = reproductionDAO.findById(id);
 	reproduction.setPrix(price);
-	reproductionDAO.updateReproduction(reproduction);
+	//reproductionDAO.updateReproduction(reproduction);
 	return reproduction.getPrix();
     }
 
@@ -256,6 +259,6 @@ public class ServiceMusee{
     public List<Oeuvre> getAllOeuvreNotReproducedOfCollection(int id) {
 	List<Oeuvre> oeuvres = reproductionDAO.getOeuvresOfCollectionNotReproduced(id);
 	return oeuvres;
-    }        
-        
+    }  
+          
 }
