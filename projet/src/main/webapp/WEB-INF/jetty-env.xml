@@ -5,13 +5,13 @@ Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
   <New id="h2db" class="org.eclipse.jetty.plus.jndi.Resource">
     <Arg></Arg>
-    <Arg>jdbc/H2DB</Arg>
+    <Arg>jdbc/MySQL</Arg>
     <Arg>
       <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
-	<Set name="driverClass">org.h2.Driver</Set>
+	<Set name="driverClass">com.mysql.jdbc.Driver</Set>
 	<Set name="User">sa</Set>
 	<Set name="Password"></Set>
-	<Set name="jdbcUrl">jdbc:h2:mem://localhost:9101/dbunit</Set>
+	<Set name="jdbcUrl">jdbc:mysql://localhost:9101/muse</Set>
       </New>
     </Arg>
   </New>
