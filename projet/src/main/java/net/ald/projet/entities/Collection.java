@@ -51,9 +51,12 @@ public class Collection {
     public Collection(int id, EtatCollection etat) {
 	this.id = id;
 	this.etat = etat;
-	//this.libele = libele;
     }
-        
+
+    public Collection(int id){
+    	this.id = id;
+    }
+    
     public String toString(){
 	return null;
     }

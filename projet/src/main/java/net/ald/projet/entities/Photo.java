@@ -57,17 +57,6 @@ public class Photo {
         public void setOeuvre(Oeuvre oeuvre) {
                 this.oeuvre = oeuvre;
         }
-
-
-        @XmlElement
-        public String getPath() {
-                return path;
-        }
-
-
-        public void setPath(String path) {
-                this.path = path;
-        }       
         
 }
 

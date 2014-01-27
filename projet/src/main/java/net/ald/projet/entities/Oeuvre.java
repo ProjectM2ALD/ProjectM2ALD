@@ -20,11 +20,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
-
+import javax.xml.bind.annotation.XmlRootElement;
 import net.ald.projet.property.Dimension;
 
 
 @Entity 
+@XmlRootElement 
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @XmlSeeAlso({Peinture.class, Sculpture.class, Photographie.class})
 public class Oeuvre {
@@ -34,9 +35,6 @@ public class Oeuvre {
         
         @Embedded 
         private Dimension dimension;
-        
-       // @XmlElement(defaultValue = "false")
-        //private boolean hasBeenReproduced = false;
         
         @ManyToOne (fetch=FetchType.LAZY)
         @JoinColumn(name="artiste_id") 
@@ -57,9 +55,6 @@ public class Oeuvre {
 
         @Column(nullable=true) 
         private String type;
-
-       // @Column(nullable=true) 
-        //private String resume;
         
         @ElementCollection
         @Column(nullable=true)
@@ -75,7 +70,6 @@ public class Oeuvre {
                       List<String> commentaire, String tag) {
                 super();
                 this.dimension = dimension;
-                //this.hasBeenReproduced = hasBeenReproduced;
                 this.artiste = artiste;
                 this.artiste.addOeuvre(this);
                 if(photo != null){
@@ -120,19 +114,6 @@ public class Oeuvre {
                 this.dimension = dimension1;
         }
 
-      /*  public boolean hasBeenReproduced() {
-                return hasBeenReproduced;
-        }
-
-
-        public void setHasBeenReproduced(boolean hasBeenReproduced) {
-                this.hasBeenReproduced = hasBeenReproduced;
-        }*/
-
-
-        
-//        @XmlTransient
-        //@XmlInverseReference(mappedBy="oeuvres")
         @XmlElement
         public Artiste getArtiste() {
                 return artiste;
@@ -184,23 +165,6 @@ public class Oeuvre {
         public void setTitre(String titre) {
                 this.titre = titre;
         }
-
-       // @XmlElement
-       /// public String getResume() {
-        //        return resume;
-        //}
-
-
-       /* public void setResume(String resume) {
-                this.resume = resume;
-        }
-
-
-        @XmlElement
-        public List<String> getCommentaire() {
-                return commentaire;
-        }*/
-
 
         public void setCommentaire(List<String> commentaire) {
                 this.commentaire = commentaire;
