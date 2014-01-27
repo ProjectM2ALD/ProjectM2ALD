@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: net.ald.projet.AppTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
->>>>>>> 22bb41bca0dfe306da8965700cdb04a04301bb7b
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 sec

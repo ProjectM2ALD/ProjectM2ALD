@@ -15,7 +15,7 @@
     <class> net.ald.projet.entities.Peinture</class> 
     <class> net.ald.projet.entities.Photo</class>
     <class>net.ald.projet.entites.User</class>
-   <!--  <non-jta-data-source>java:comp/env/jdbc/H2DB</non-jta-data-source>  -->
+    <non-jta-data-source>java:comp/env/jdbc/H2DB</non-jta-data-source> 
    
     <properties>
       <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/> 
