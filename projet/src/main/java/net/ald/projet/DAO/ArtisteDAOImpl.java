@@ -40,7 +40,7 @@ public class ArtisteDAOImpl extends GenericDAO {
         }
 }
     public void createAlbum(int id, String first_name, String last_name) {
-        System.out.println("Create a Artiste");
+        System.out.println("Create an Album");
         EntityManager em = createEntityManager();
         EntityTransaction tx = null;
         try {
@@ -72,7 +72,7 @@ public class ArtisteDAOImpl extends GenericDAO {
         }
 }
 
-   /* public void updateArtiste(Artiste artiste){
+   public void updateArtiste(Artiste artiste){
 	EntityManager em = createEntityManager();
 	EntityTransaction tx = null;
 	try {
@@ -86,7 +86,7 @@ public class ArtisteDAOImpl extends GenericDAO {
 		LOG.error("update artiste failed", re);
 	    tx.rollback();
 		}
-    }*/
+    }
 
 
    @SuppressWarnings("unchecked")

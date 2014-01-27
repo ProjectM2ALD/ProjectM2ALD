@@ -51,7 +51,7 @@ public class CollectionDAO extends GenericDAO {
 
         @SuppressWarnings("unchecked")
 		public List<Collection> findAll() {
-                List<Collection> collections = new ArrayList<Collection>();
+        		List<Collection> collections = new ArrayList<Collection>();
                 List<Collection> res = new ArrayList<Collection>();
                 EntityManager em = createEntityManager();
 

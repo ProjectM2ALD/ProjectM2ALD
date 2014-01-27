@@ -25,7 +25,7 @@ import net.ald.projet.DAO.ReproductionDAO;
 import net.ald.projet.property.Connexion;
 
 
-@Path("/servicemusee")
+@Path("/ServiceMusee")
 public class ServiceMusee{
 
     @SuppressWarnings("unused")
@@ -40,11 +40,6 @@ public class ServiceMusee{
     public ServiceMusee(){
     }
      
-    @GET
-    @Path("/toto")
-    public String mabite(){
-    	return "YOLO";
-    } 
     
     @POST
     @Path("/collection/create")
@@ -92,8 +87,16 @@ public class ServiceMusee{
     @Path("/oeuvre/update")
     @Consumes("application/xml")
     public Response updateOeuvre(Oeuvre o){
-	//oeuvreDAO.updateOeuvre(o);
+	oeuvreDAO.updateOeuvre(o);
 	return Response.ok(o).build();
+    }
+    
+    @POST
+    @Path("/artiste/update")
+    @Consumes("application/xml")
+    public Response updateArtiste(Artiste a){
+    	artisteDAO.updateArtiste(a);
+	return Response.ok(a).build();
     }
 
     @POST

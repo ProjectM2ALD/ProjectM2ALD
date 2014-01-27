@@ -81,7 +81,7 @@ public class OeuvreDAOImpl extends GenericDAO {
             }
         }
 
-       /* public void updateOeuvre(Oeuvre oeuvre){
+        public void updateOeuvre(Oeuvre oeuvre){
                 EntityManager em = createEntityManager();
                 EntityTransaction tx = null;
                 try {
@@ -95,7 +95,7 @@ public class OeuvreDAOImpl extends GenericDAO {
                                 LOG.error("update oeuvre failed", re);
                         tx.rollback();
                 }
-        }*/
+        }
 
         public void removeOeuvre(Oeuvre oeuvre){
                 EntityManager em = createEntityManager();
