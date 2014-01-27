@@ -25,6 +25,11 @@
       <id>org.jboss.resteasy</id>
       <url>http://repository.jboss.org/nexus/content/groups/public/</url>
     </repository>
+
+    <repository>
+      <id>EclipseLink</id>
+      <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+    </repository>
   </repositories>
 
   <dependencies>
