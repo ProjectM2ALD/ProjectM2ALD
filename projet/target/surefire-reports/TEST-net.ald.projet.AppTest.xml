@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.038" errors="0" skipped="0" tests="1" name="net.ald.projet.AppTest">
+<testsuite failures="0" time="0" errors="0" skipped="0" tests="1" name="net.ald.projet.AppTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/amd64"/>
-    <property name="java.vm.version" value="24.45-b08"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/amd64"/>
+    <property name="java.vm.version" value="20.8-b03"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
@@ -14,49 +14,49 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/autofs/netapp/travail/oourhi/m2/ald/maven/projet-final/ProjectM2ALD/projet"/>
-    <property name="java.runtime.version" value="1.7.0_45-b18"/>
+    <property name="user.dir" value="/autofs/netapp/account/cremi/jport/git/ProjectM2ALD/projet"/>
+    <property name="java.runtime.version" value="1.6.0_33-b03"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/endorsed"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/net/travail/oourhi/m2/ald/maven/apache-maven-3.0.5/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/autofs/netapp/account/cremi/jport/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf4226746509772731938.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.library.path" value="/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/amd64/server:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/amd64:/usr/lib/jvm/j2sdk1.6-oracle/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="51.0"/>
+    <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="3.12-1-amd64"/>
-    <property name="user.home" value="/net/cremi/oourhi"/>
+    <property name="user.home" value="/net/cremi/jport"/>
     <property name="user.timezone" value="Europe/Paris"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="file.encoding" value="UTF-8"/>
-    <property name="java.specification.version" value="1.7"/>
-    <property name="user.name" value="oourhi"/>
-    <property name="java.class.path" value="/net/travail/oourhi/m2/ald/maven/apache-maven-3.0.5/boot/plexus-classworlds-2.4.jar"/>
-    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="file.encoding" value="ISO-8859-1"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="user.name" value="jport"/>
+    <property name="java.class.path" value="/autofs/netapp/travail/jport/.eclipse/org.eclipse.platform_4.3.0_2046783992_linux_gtk_x86_64/configuration/org.eclipse.osgi/bundles/882/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/usr/lib/jvm/jdk-7-oracle-x64/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
-    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/usr/lib/jvm/j2sdk1.6-oracle/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="fr"/>
-    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.7.0_45"/>
-    <property name="java.ext.dirs" value="/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="java.version" value="1.6.0_33"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/ext:/usr/java/packages/lib/ext"/>
     <property name="securerandom.source" value="file:/dev/./urandom"/>
-    <property name="sun.boot.class.path" value="/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/resources.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/rt.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/sunrsasign.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/jsse.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/jce.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/charsets.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/lib/jfr.jar:/usr/lib/jvm/jdk-7-oracle-x64/jre/classes"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/net/travail/oourhi/m2/ald/maven/apache-maven-3.0.5"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/resources.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/rt.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/jsse.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/jce.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/charsets.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/j2sdk1.6-oracle/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="maven.home" value="/autofs/netapp/account/cremi/jport/git/ProjectM2ALD/projet/EMBEDDED"/>
     <property name="file.separator" value="/"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="maven.bootclasspath" value="/autofs/netapp/travail/jport/.eclipse/org.eclipse.platform_4.3.0_2046783992_linux_gtk_x86_64/configuration/org.eclipse.osgi/bundles/882/1/.cp/jars/plexus-classworlds-2.4.jar"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.002" classname="net.ald.projet.AppTest" name="testApp"/>
+  <testcase time="0" classname="net.ald.projet.AppTest" name="testApp"/>
 </testsuite>

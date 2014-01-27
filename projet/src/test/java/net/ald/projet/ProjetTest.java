@@ -1,61 +1,29 @@
 package net.ald.projet;
 
-import static org.junit.Assert.*;
-
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
-
 import net.ald.projet.entities.Artiste;
 import net.ald.projet.entities.Collection;
 import net.ald.projet.entities.Oeuvre;
-import net.ald.projet.entities.Peinture;
 import net.ald.projet.entities.Photo;
 import net.ald.projet.entities.Reproduction;
-import net.ald.projet.entities.ServiceConnexion;
 import net.ald.projet.entities.User;
 import net.ald.projet.property.Connexion;
 import net.ald.projet.property.Dimension;
-import net.ald.projet.property.Realisation;
-import net.ald.projet.property.SupportOeuvre;
 import net.ald.projet.property.SupportReproduction;
 
-import org.dbunit.database.DatabaseConfig;
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.DefaultDataSet;
-
-import javax.persistence.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.dbunit.database.*;
-import org.dbunit.dataset.*;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.ext.h2.H2DataTypeFactory;
-import org.dbunit.operation.DatabaseOperation;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.slf4j.LoggerFactory;
-
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.Date;
 
 
 public class ProjetTest {
@@ -153,20 +121,19 @@ public class ProjetTest {
 				request = new ClientRequest("http://localhost:8080/rest/" + method + "/" + id);
 			}
 			if(o!=null){
-				Marshaller marshaller = jc.createMarshaller();
+				/*Marshaller marshaller = jc.createMarshaller();
 				marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 				java.io.StringWriter sw = new StringWriter();
-				marshaller.marshal(o, sw);
+				marshaller.marshal(o, sw);*/
 				
 				//request = new ClientRequest("http://localhost:8080/rest/" + method);
-				request.body("application/xml", sw.toString());
+				request.body("application/xml", o);
 			}
 			ClientResponse<String> response = request.post(String.class);
-			if (response.getStatus() == 200)
-			{
+			
 				String str = response.getEntity();
 				LOG.debug("succes = service " + method + " " + str);
-			}
+			
 		}catch(Exception e){
 			LOG.error("erreur lors de l'appel du service " + method);
 			e.printStackTrace();
@@ -181,12 +148,37 @@ public class ProjetTest {
 		@Test
 		public final void testAddOeuvre() {
 			try {
-				restMethodPost("oeuvre/create", w1);
-				restMethodPost("oeuvre/create", w2);
-				restMethodPost("oeuvre/create", w3);
-				@SuppressWarnings("unchecked")
-				List<Oeuvre> oeuv = (List<Oeuvre>)restMethodGet("oeuvres/criteria");
-				Oeuvre w = (Oeuvre) restMethodGet("oeuvre", 1);
+				
+				restMethodPost("servicemusee/artiste/create", a1);
+				restMethodPost("servicemusee/artiste/create", a2);
+				restMethodPost("servicemusee/artiste/create", a3);
+				restMethodPost("servicemusee/oeuvre/create", w1);
+				restMethodPost("servicemusee/oeuvre/create", w2);
+				restMethodPost("servicemusee/oeuvre/create", w3);
+				
+				List<Oeuvre> so = (List<Oeuvre>) restMethodGet("servicemusee/oeuvre/artiste", 12);
+				System.out.println(so.size());
+				for(Oeuvre o : so){
+					System.out.println(o.getTitre());
+				}
+				
+				//System.out.println("la taille: "+ oeuv.size());
+				//System.out.println("artiste= "+ w.getArtiste().getFirst_name());
+				//assertEquals(1,w.getId());
+						
+				//assertEquals(3, oeuv.size());
+				
+			} catch (Exception e) {
+				LOG.error("erreur lors de l'execution");
+				e.printStackTrace();
+			}
+		}
+		
+		@Test
+		public final void testGetOeuvre() {
+			try {
+				
+				
 				//System.out.println("la taille: "+ oeuv.size());
 				//System.out.println("artiste= "+ w.getArtiste().getFirst_name());
 				//assertEquals(1,w.getId());

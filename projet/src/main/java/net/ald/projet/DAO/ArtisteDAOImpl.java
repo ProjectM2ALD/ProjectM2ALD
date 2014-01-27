@@ -93,7 +93,7 @@ public class ArtisteDAOImpl extends GenericDAO {
 	public List<Artiste> findAll() {
 	List<Artiste> res = new ArrayList<Artiste>();
 	EntityManager em = createEntityManager();
-	res = em.createQuery("Artiste:").getResultList();
+	res = em.createQuery("SELECT p FROM Artiste p").getResultList();
 	return res;
     }
 
@@ -141,11 +141,11 @@ public class ArtisteDAOImpl extends GenericDAO {
     		}
         }
 
-    public Set<Oeuvre> findOeuvresOfIdArtiste(int ArtisteId) {
+    public List<Oeuvre> findOeuvresOfIdArtiste(int ArtisteId) {
 	Set<Oeuvre> oeuvres = new HashSet<Oeuvre>();
 	Set<Oeuvre> res = new HashSet<Oeuvre>();
 	EntityManager em = createEntityManager();
-	Artiste a = em.getReference(Artiste.class,ArtisteId);
+	Artiste a = em.getReference(Artiste.class, ArtisteId);
 	res = a.getOeuvres();
 	    
 	    
@@ -159,7 +159,7 @@ public class ArtisteDAOImpl extends GenericDAO {
 		oeuvres.add(new Photographie(o.getId(), o.getTitre()));
 	    }
 	}
-	return oeuvres;
+	return em.createQuery("SELECT * FROM Oeuvre").getResultList();
     }
 }
 

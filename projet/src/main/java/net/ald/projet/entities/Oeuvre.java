@@ -18,10 +18,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import net.ald.projet.property.Dimension;
+
 
 
 @Entity 
@@ -63,6 +68,7 @@ public class Oeuvre {
         @Column(nullable=true)
         private String tag;
         
+        
         public Oeuvre(){
         }
         
@@ -82,10 +88,11 @@ public class Oeuvre {
                 this.tag = tag;
         }
 
+       
     public Oeuvre(int id, Artiste artiste, String titre, Integer annee, String type){
 	super();
 	this.id = id;
-	this.artiste = artiste;
+	setArtiste(artiste);
 	this.titre = titre;
 	this.annee = annee;
 	this.type = type;
@@ -95,7 +102,7 @@ public class Oeuvre {
 		this.id = id;
 		this.titre = titre;
 	}
-
+    
 	@XmlElement
         public int getId() {
 	return id;
@@ -124,6 +131,7 @@ public class Oeuvre {
                 artiste.addOeuvre(this);
         }
 
+        
         @XmlElement
         public List<Photo> getPhoto() {
                 return photo;

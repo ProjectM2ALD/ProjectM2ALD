@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.ws.rs.core.Response;
 
 import org.slf4j.LoggerFactory;
 
@@ -30,19 +31,18 @@ public class OeuvreDAOImpl extends GenericDAO {
         private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(OeuvreDAOImpl.class);
         
         public void createOeuvre(Oeuvre oeuvre) {
-                EntityManager em = createEntityManager();
-                EntityTransaction tx = null;
-                try {
-                        tx = em.getTransaction();
-                        tx.begin();
-                        em.persist(oeuvre);
-                        tx.commit();
-                } catch (Exception e) {
-                        if (tx != null){
-                        	System.err.println("Something went wrong");
-                        }
-                        tx.rollback();
-                }
+        		
+        	EntityManager em = createEntityManager();
+            EntityTransaction tx=em.getTransaction();
+            try{
+            	tx.begin();
+            	em.persist(oeuvre);
+            	LOG.debug("Add a new oeuvre ");
+            } catch (RuntimeException re) {
+            	LOG.error("add oeuvre failed", re);
+            }finally{
+            	tx.commit();
+            }
         }
         
         public void createOeuvre(List<Oeuvre> oeuv) {
@@ -65,7 +65,7 @@ public class OeuvreDAOImpl extends GenericDAO {
         
         void createOeuvre(int id, Artiste artiste, String titre, Integer annee, String type) {
         	
-        	System.out.println("Create a Oeuvre");
+        	System.out.println("Create an Oeuvre");
         	EntityManager em = createEntityManager();
             EntityTransaction tx = null;
             try {
@@ -136,7 +136,7 @@ public class OeuvreDAOImpl extends GenericDAO {
             }
     }
         
-        @SuppressWarnings("unchecked")
+        
 		public List<Oeuvre> findAll() {
                 List<Oeuvre> oeuvres = new ArrayList<Oeuvre>();
                 List<Oeuvre> res = new ArrayList<Oeuvre>();
@@ -153,7 +153,7 @@ public class OeuvreDAOImpl extends GenericDAO {
                                 oeuvres.add(new Photographie(o.getId(), o.getTitre()));
                         }
                 }
-                return oeuvres;
+                return res;
         }
 
         public Oeuvre findById(int id){

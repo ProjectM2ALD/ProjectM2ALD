@@ -25,7 +25,7 @@ import net.ald.projet.DAO.ReproductionDAO;
 import net.ald.projet.property.Connexion;
 
 
-
+@Path("/servicemusee")
 public class ServiceMusee{
 
     @SuppressWarnings("unused")
@@ -39,7 +39,13 @@ public class ServiceMusee{
 
     public ServiceMusee(){
     }
-      
+     
+    @GET
+    @Path("/toto")
+    public String mabite(){
+    	return "YOLO";
+    } 
+    
     @POST
     @Path("/collection/create")
     @Consumes("application/xml")
@@ -52,10 +58,10 @@ public class ServiceMusee{
 
     @POST
     @Path("/oeuvre/create")
-    @Consumes("application/xml")
+    @Produces("application/xml")
     public Response createOeuvre(Oeuvre o){
 	oeuvreDAO.createOeuvre(o);
-	return Response.ok(o).build();
+	return Response.ok("<status>success</status>").build();
     }
     
     @POST
@@ -162,7 +168,7 @@ public class ServiceMusee{
     }
 
     @GET
-    @Path("/artistes")
+    @Path("/artiste")
     @Produces({"application/xml","application/json"})
     public Artiste getArtiste(@PathParam("id")int id){
 	Artiste a = artisteDAO.findById(id);
@@ -172,9 +178,9 @@ public class ServiceMusee{
     @GET
     @Path("/oeuvre/artiste/{id}")
     @Produces({"application/xml","application/json"})
-    public Set<Oeuvre> findOeuvresOfArtiste(@PathParam("id")int ArtisteId)
+    public List<Oeuvre> findOeuvresOfArtiste(@PathParam("id")int ArtisteId)
     {
-	Set<Oeuvre> oeuvres = new HashSet<Oeuvre>();
+	List<Oeuvre> oeuvres = new ArrayList<Oeuvre>();
 	oeuvres = artisteDAO.findOeuvresOfIdArtiste(ArtisteId);
 	return oeuvres;        
     }
